@@ -2,7 +2,7 @@ pipeline {
     agent none # means each build stage will specify its own agent   
     stages {
         stage('Build') { 
-            agent {  #defines a stage directive 
+            agent {  
                 docker {
                     image 'python:2-alpine' 
                 }
