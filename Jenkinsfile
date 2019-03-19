@@ -1,8 +1,8 @@
 pipeline {
-    agent none 
+    agent none # means each build stage will specify its own agent   
     stages {
         stage('Build') { 
-            agent {
+            agent {  #defines a stage directive 
                 docker {
                     image 'python:2-alpine' 
                 }
@@ -13,6 +13,7 @@ pipeline {
             }
         }
 	
+
 	stage('Test') {
             agent {
                 docker {
@@ -29,5 +30,23 @@ pipeline {
             }
         }
 
-    }
-}
+
+	stage('Deliver') {
+            agent {
+                docker {
+                    image 'cdrx/pyinstaller-linux:python2'
+                }
+            }
+            steps {
+                sh 'pyinstaller --onefile sources/add2vals.py'
+            }
+            post {
+                success {
+                    archiveArtifacts 'dist/add2vals'
+                }
+            }
+        }
+   
+     }
+
+ }
