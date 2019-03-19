@@ -13,7 +13,6 @@ pipeline {
             }
         }
 
-
 	stage('Test') {
             agent {
                 docker {
@@ -29,7 +28,6 @@ pipeline {
                 }
             }
         }
-
 
 	stage('Deliver') {
             agent {
