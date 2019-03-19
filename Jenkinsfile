@@ -1,5 +1,5 @@
 pipeline {
-    agent none # means each build stage will specify its own agent   
+    agent none   
     stages {
         stage('Build') { 
             agent {  
