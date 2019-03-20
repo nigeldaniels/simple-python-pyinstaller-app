@@ -1,5 +1,9 @@
 pipeline {
     agent none   
+    triggers {
+	pollSCM('') 	
+    }
+
     stages {
         stage('Build') { 
             agent {  
@@ -29,7 +33,7 @@ pipeline {
             }
         }
 
-	stage('Deliver the service') {
+	stage('Deliver_the_service') {
             agent {
                 docker {
                     image 'cdrx/pyinstaller-linux:python2'
